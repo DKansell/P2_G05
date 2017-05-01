@@ -43,8 +43,11 @@ GameElements::~GameElements()
 
 void GameElements::help()
 {
+	std::cout << "----------------" << std::endl;
+	std::cout << " ALCHEMIST GAME " << std::endl;
+	std::cout << "----------------\n" << std::endl;
 	std::cout << "- Enter two numbers of your elements list to combine them." << std::endl;
-	std::cout << "- Enter the word 'add' and the number of an element to add another copy of this element to your inventory" << std::endl;
+	std::cout << "- Enter the word 'add' and the number of an element to add another copy of this element to your inventory." << std::endl;
 	std::cout << "- Enter 'add basics' to add a new copy of the 4 basic elements to your inventory." << std::endl;
 	std::cout << "- Enter the word 'delete' and the number of an element to erase it from your inventory." << std::endl;
 	std::cout << "- Enter the word 'info' and the number of an element to get information about it." << std::endl;
