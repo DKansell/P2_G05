@@ -10,7 +10,7 @@
 Player::Player() : 
 	//Inicializamos score a 0 i inventario del jugador con los 4 elementos básicos
 	playerScore(0),
-	playerInventory({"Air", "Earth", "Fire", "Water", "Fire", "Fire"})
+	playerInventory({"Air", "Earth", "Water", "Fire"})
 {
 }
 
@@ -66,22 +66,26 @@ void Player::sortInventory() //Ordena inventari en ordre alfabetic
 
 void Player::cleanInventory() //Elimina elementos repetidos del inventario
 {
-	//Vector auxiliar para comprobar repetidos
+	//Vector auxiliar para comprobar repetidos i variable para identificar repeticiones
 	std::vector<std::string> aux; 
-	bool duplicate = false;
+	bool duplicate = false; 
 
 	for (std::vector<std::string>::iterator it = playerInventory.begin(); it != playerInventory.end(); ++it)
 	{
 		duplicate = false;
 		for (std::vector<std::string>::iterator j = aux.begin(); j != aux.end(); ++j)
 		{
-			if (*it == *j)
+			if (*it == *j) //Si encuentra un duplicado salimos del bucle y no lo guardamos
 			{
-				duplicate = true;
+				duplicate = true; 
 				break;
 			}
 		}
-		if (duplicate == false) aux.push_back(*it);
+		if (duplicate == false) aux.push_back(*it); //Copia un elemento en caso de no estar repetido
 	}
+	//Copiamos el vector auxiliar sin duplicados al vector inventario
 	playerInventory = aux;
+	
+	//Ordenamos el vector final sin duplicados
+	Player::sortInventory();
 }
