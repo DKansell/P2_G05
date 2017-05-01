@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <Windows.h>
+#include <algorithm>
 
 
 
@@ -58,3 +59,13 @@ void Player::searchInfo(int elementPosition) //Busca información de un elemento 
 	ShellExecuteA(nullptr, "open", link.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
 }
 
+void Player::sortInventory() //Ordena inventari en ordre alfabetic
+{
+	std::sort(playerInventory.begin(), playerInventory.end());
+}
+void Player::cleanInventory()
+{
+
+
+
+}

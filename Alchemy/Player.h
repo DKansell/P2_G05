@@ -16,6 +16,8 @@ public:
 	void deleteElement(int elementPosition);
 	void showInventory(); //Imprime el inventario del jugador
 	void searchInfo(int elementPosition);
+	void sortInventory();
+	void cleanInventory();
 
 	//Atributos
 	int playerScore; //Puntuación
