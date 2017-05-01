@@ -15,7 +15,8 @@ void main() {
 	GameElements gameElements;
 	Player player;
 
-	player.showInventory();
+	player.showInventory(); 
+
 
 	system("pause");
 }

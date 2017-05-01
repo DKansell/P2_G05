@@ -10,7 +10,7 @@
 Player::Player() : 
 	//Inicializamos score a 0 i inventario del jugador con los 4 elementos básicos
 	playerScore(0),
-	playerInventory({"Air", "Earth", "Fire", "Water"})
+	playerInventory({"Air", "Earth", "Fire", "Water", "Fire", "Fire"})
 {
 }
 
@@ -63,9 +63,25 @@ void Player::sortInventory() //Ordena inventari en ordre alfabetic
 {
 	std::sort(playerInventory.begin(), playerInventory.end());
 }
-void Player::cleanInventory()
+
+void Player::cleanInventory() //Elimina elementos repetidos del inventario
 {
+	//Vector auxiliar para comprobar repetidos
+	std::vector<std::string> aux; 
+	bool duplicate = false;
 
-
-
+	for (std::vector<std::string>::iterator it = playerInventory.begin(); it != playerInventory.end(); ++it)
+	{
+		duplicate = false;
+		for (std::vector<std::string>::iterator j = aux.begin(); j != aux.end(); ++j)
+		{
+			if (*it == *j)
+			{
+				duplicate = true;
+				break;
+			}
+		}
+		if (duplicate == false) aux.push_back(*it);
+	}
+	playerInventory = aux;
 }
