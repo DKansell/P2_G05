@@ -15,7 +15,7 @@ public:
 	~GameElements();
 
 	//Métodos
-
+	void help();
 
 	//Atributos
 	//mapa de las combinaciones

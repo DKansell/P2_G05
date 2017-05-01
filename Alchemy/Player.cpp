@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <Windows.h>
 
 
 
@@ -47,6 +48,13 @@ void Player::showInventory() //Imprime el inventario del jugador
 {
 	for (auto it = 0; it < playerInventory.size(); it++)
 	{
-		std::cout << it + 1 << ":" << playerInventory[it] << std::endl;
+		std::cout << it + 1 << ": " << playerInventory[it] << std::endl;
 	}
 }
+
+void Player::searchInfo(int elementPosition) //Busca información de un elemento en internet
+{
+	std::string link = "https://en.wikipedia.org/wiki/" + playerInventory[elementPosition]; //"Suma" de dos strings : "url wikipedia" + "nombre elemento"
+	ShellExecuteA(nullptr, "open", link.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+}
+

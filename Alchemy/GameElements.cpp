@@ -1,4 +1,5 @@
 #include "GameElements.h"
+#include <iostream>
 
 
 
@@ -40,4 +41,14 @@ GameElements::~GameElements()
 {
 }
 
-
+void GameElements::help()
+{
+	std::cout << "- Enter two numbers of your elements list to combine them." << std::endl;
+	std::cout << "- Enter the word 'add' and the number of an element to add another copy of this element to your inventory" << std::endl;
+	std::cout << "- Enter 'add basics' to add a new copy of the 4 basic elements to your inventory." << std::endl;
+	std::cout << "- Enter the word 'delete' and the number of an element to erase it from your inventory." << std::endl;
+	std::cout << "- Enter the word 'info' and the number of an element to get information about it." << std::endl;
+	std::cout << "- Enter the word 'sort' to sort your inventory by alphabetical order." << std::endl;
+	std::cout << "- Enter the word 'clean' to delete all the repeated elements." << std::endl;
+	std::cout << "- Enter the word 'help' to show this tutorial." << std::endl;
+}
