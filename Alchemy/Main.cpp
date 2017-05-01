@@ -14,4 +14,8 @@ void main() {
 	//Creación objetos del juego
 	GameElements gameElements;
 	Player player;
+
+	player.showInventory();
+
+	system("pause");
 }

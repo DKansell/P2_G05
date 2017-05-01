@@ -7,17 +7,16 @@ GameElements::GameElements()
 	std::ifstream elementList;
 	elementList.open("elements.dat");
 
-	std::string line;
+	std::string line; 
 	std::size_t aux1;
 	std::size_t aux2;
 	std::string elementValue, key1, key2;
 
-	
+	//Si no se carga correctamente interrumpimos el programa
 	if (elementList.fail())
 	{
 		system("pause");
 	}
-
 	else
 	{
 		while (!elementList.eof())
@@ -37,7 +36,8 @@ GameElements::GameElements()
 	elementList.close();
 }
 
-
 GameElements::~GameElements()
 {
 }
+
+
