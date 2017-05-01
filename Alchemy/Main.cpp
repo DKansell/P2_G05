@@ -26,50 +26,59 @@ void main() {
 	std::size_t aux;
 	std::string rightInstruction;
 
-	int i = 0;
+	bool playing = true;
 
 	//GAME LOOP
-	/*do {*/
+	do {
 
 		std::cout << "\nYour current score: " << player.playerScore << std::endl;
 		std::cout << "\nYou have these elements: " << std::endl;
 		player.showInventory();
 		getline(std::cin, userInput); //Guardamos la instruccion del usuario dentro de una string
-
 		aux = userInput.find(" ");
-		leftInstruction = userInput.substr(0, aux); //instruccion de la izquierda
-		//rightInstruction = userInput.substr(aux + 1); //instruccion de la derecha
 
-		std::cout << aux;
+		if (aux != std::string::npos) {
+			leftInstruction = userInput.substr(0, aux); //instruccion de la izquierda
+			rightInstruction = userInput.substr(aux + 1); //instruccion de la derecha
+		}
+
+		else leftInstruction = userInput;
 
 		system("cls"); //Borramos la pantalla despues del input
 
 		if (leftInstruction == "add" && rightInstruction == "basics") player.addBasics();
-		if (leftInstruction == "add" && rightInstruction != "basics")
+		else if (leftInstruction == "add" && rightInstruction != "basics")
 		{
 			int elementNumber = atoi(rightInstruction.c_str()); 
 			player.add(elementNumber);
 		}
-		if (leftInstruction == "help") gameElements.help();
-		if (leftInstruction == "delete") 
+		else if (leftInstruction == "help") gameElements.help();
+		else if (leftInstruction == "delete") 
 		{
 			int elementNumber = atoi(rightInstruction.c_str());
 			player.deleteElement(elementNumber);
 		}
-		if (leftInstruction == "info") 
+		else if (leftInstruction == "info") 
 		{
 			int elementNumber = atoi(rightInstruction.c_str());
 			player.searchInfo(elementNumber);
 		}
-		if (leftInstruction == "sort") player.sortInventory();
-		if (leftInstruction == "clean") player.cleanInventory();
+		else if (leftInstruction == "sort") player.sortInventory();
+		else if (leftInstruction == "clean") player.cleanInventory();
+
+		else 
+		{
+			int key1 = atoi(leftInstruction.c_str());
+			int key2 = atoi(rightInstruction.c_str());
+
+			std::string newElement = gameElements.myElements
+
+		}
 
 
-
-		player.showInventory();
 		/*std::cin.clear(); //clears all error state flags
 		//extracts characters from the input buffer and discards them
 		std::cin.ignore(std::cin.rdbuf()->in_avail());*/
 
-	/*} while (i < 1);*/
+	}while (playing);
 }
