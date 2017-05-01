@@ -23,9 +23,10 @@ void Player::add(int elementPosition) //Añade un elemento al inventario del juga
 	//Comprobación para que no se pueda añadir ningun elemento de posición mas grande que el size del inventario
 	if (elementPosition <= playerInventory.size())
 	{
-		std::string aux = playerInventory[elementPosition];
+		std::string aux = playerInventory[elementPosition-1];
 		playerInventory.push_back(aux);
 	}
+	else std::cout << "Invalid command" << std::endl;
 }
 
 void Player::addBasics() //Añade los 4 elementos básicos al inventario del jugador

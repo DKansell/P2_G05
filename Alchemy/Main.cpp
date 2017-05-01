@@ -7,6 +7,7 @@
 #include <fstream>
 #include <iostream>
 #include <conio.h>
+#include <cstdlib>
 
 
 
@@ -21,9 +22,9 @@ void main() {
 
 	//Variables importantes
 	std::string userInput;
-	std::string instruction;
+	std::string leftInstruction;
 	std::size_t aux;
-	std::string subInstruction;
+	std::string rightInstruction;
 
 	int i = 0;
 
@@ -33,23 +34,42 @@ void main() {
 		std::cout << "\nYour current score: " << player.playerScore << std::endl;
 		std::cout << "\nYou have these elements: " << std::endl;
 		player.showInventory();
-		std::cin >> userInput;
+		getline(std::cin, userInput); //Guardamos la instruccion del usuario dentro de una string
 
 		aux = userInput.find(" ");
-		instruction = userInput.substr(0, aux);
-		subInstruction = userInput.substr(aux + 1);
+		leftInstruction = userInput.substr(0, aux); //instruccion de la izquierda
+		//rightInstruction = userInput.substr(aux + 1); //instruccion de la derecha
 
-		std::cout << instruction << " " << subInstruction;
+		std::cout << aux;
 
-		//if (instruction == "add" && parameter == "basics") player.addBasics();
-		//if (instruction == "add" )
+		system("cls"); //Borramos la pantalla despues del input
+
+		if (leftInstruction == "add" && rightInstruction == "basics") player.addBasics();
+		if (leftInstruction == "add" && rightInstruction != "basics")
+		{
+			int elementNumber = atoi(rightInstruction.c_str()); 
+			player.add(elementNumber);
+		}
+		if (leftInstruction == "help") gameElements.help();
+		if (leftInstruction == "delete") 
+		{
+			int elementNumber = atoi(rightInstruction.c_str());
+			player.deleteElement(elementNumber);
+		}
+		if (leftInstruction == "info") 
+		{
+			int elementNumber = atoi(rightInstruction.c_str());
+			player.searchInfo(elementNumber);
+		}
+		if (leftInstruction == "sort") player.sortInventory();
+		if (leftInstruction == "clean") player.cleanInventory();
 
 
+
+		player.showInventory();
 		/*std::cin.clear(); //clears all error state flags
 		//extracts characters from the input buffer and discards them
 		std::cin.ignore(std::cin.rdbuf()->in_avail());*/
 
 	/*} while (i < 1);*/
-
-
 }
