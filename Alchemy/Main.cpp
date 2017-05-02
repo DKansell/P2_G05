@@ -9,12 +9,11 @@
 #include <conio.h>
 #include <cstdlib>
 
-
-struct std::hash<std::pair<std::string, std::string>>
-{
-	size_t operator()(const std::pair<std::string, std::string> &c)  const
+template<>
+struct std::hash<std::pair<std::string, std::string>> {
+	size_t operator()(const std::pair<std::string, std::string>& p) const
 	{
-		return ((std::hash<std::string>()(c.first) ^ (std::hash<std::string>()(c.second) << 1)) >> 1);
+		return ((hash<std::string>()(p.first) ^ (hash<std::string>()(p.second) << 1)) >> 1);
 	}
 };
 
@@ -45,8 +44,6 @@ void main() {
 		getline(std::cin, userInput); //Guardamos la instruccion del usuario dentro de una string
 
 		system("cls"); //Borramos pantalla después del Input
-
-		
 
 		Option = 0;
 		if (userInput == "help") Option = 1;
