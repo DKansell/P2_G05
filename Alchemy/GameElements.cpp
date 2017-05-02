@@ -51,6 +51,7 @@ void GameElements::help()
 	std::cout << "- Enter the word 'sort' to sort your inventory by alphabetical order." << std::endl;
 	std::cout << "- Enter the word 'clean' to delete all the repeated elements." << std::endl;
 	std::cout << "- Enter the word 'help' to show this tutorial." << std::endl;
+	std::cout << "\n- Type 'exit' to end the game." << std::endl;
 }
 
 std::string GameElements::checkMap(std::string key1, std::string key2) 

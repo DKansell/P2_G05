@@ -26,7 +26,6 @@ void Player::add(int elementPosition) //Añade un elemento al inventario del juga
 		std::string aux = playerInventory[elementPosition-1];
 		playerInventory.push_back(aux);
 	}
-	else std::cout << "Invalid command" << std::endl;
 }
 
 void Player::addBasics() //Añade los 4 elementos básicos al inventario del jugador
@@ -56,8 +55,11 @@ void Player::showInventory() //Imprime el inventario del jugador
 
 void Player::searchInfo(int elementPosition) //Busca información de un elemento en internet
 {
-	std::string link = "https://en.wikipedia.org/wiki/" + playerInventory[elementPosition]; //"Suma" de dos strings : "url wikipedia" + "nombre elemento"
-	ShellExecuteA(nullptr, "open", link.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+	if (elementPosition <= playerInventory.size())
+	{
+		std::string link = "https://en.wikipedia.org/wiki/" + playerInventory[elementPosition - 1]; //"Suma" de dos strings : "url wikipedia" + "nombre elemento"
+		ShellExecuteA(nullptr, "open", link.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+	}
 }
 
 void Player::sortInventory() //Ordena inventari en ordre alfabetic

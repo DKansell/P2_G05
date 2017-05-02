@@ -13,7 +13,7 @@
 
 
 
-void main() {
+int main() {
 
 	//Creación objetos del juego
 	GameElements gameElements;
@@ -100,24 +100,10 @@ void main() {
 				else std::cout << "Error: Can't combine those elements.";
 			}
 			else std::cout << "Error: Can't combine those elements.";
-				
-				/*std::pair<std::string, std::string> key;
-			key = std::make_pair(player.playerInventory[elementNumber1-1], player.playerInventory[elementNumber2-1]);
-			
-			auto got = gameElements.myElements.find(key);
-			
-			if (got == gameElements.myElements.end()) {
-				key = std::make_pair(player.playerInventory[elementNumber2 - 1], player.playerInventory[elementNumber1 - 1]);
-				auto got = gameElements.myElements.find(key);
-
-				if (got == gameElements.myElements.end()) std::cout << "Element Not Found" << std::endl;
-				else std::cout << got->second;
-			}
-			else
-				std::cout << got->second;
-				//Añadir el elemento al inventario y comprobar si esta descubierto para la puntuacion
-			break;*/
 		}
 	} while (Option != 99);
+
+	system("pause");
+	return 0;
 }
 	
