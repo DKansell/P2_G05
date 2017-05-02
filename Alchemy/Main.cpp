@@ -97,7 +97,7 @@ int main() {
 				//Si la combinación existe:
 				if (newElement != "NotFound")
 				{
-					std::cout << "Congratulations! You discovered: " << newElement << std::endl;
+					std::cout << "Congratulations! You found: " << newElement << std::endl;
 					player.updateScore(newElement);
 					player.updateInventory(newElement, elementNumber1, elementNumber2);
 				}
@@ -109,7 +109,7 @@ int main() {
 		}
 	} while (Option != 99);
 
-	system("pause");
+	system("exit");
 	return 0;
 }
 	
