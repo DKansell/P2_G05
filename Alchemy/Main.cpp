@@ -89,8 +89,8 @@ int main() {
 		case 7: player.searchInfo(elementNumber2);
 			break;
 		case 8: 
-			//Comprobamos que los valores de las keys esten contenidos dentro del inventario.
-			if (elementNumber1 > 0 && elementNumber1 <= player.playerInventory.size() && elementNumber2 > 0 && elementNumber2 <= player.playerInventory.size())
+			//Comprobamos que los valores de las keys esten contenidos dentro del inventario, y que no sean iguales entre si.
+			if (elementNumber1 > 0 && elementNumber1 <= player.playerInventory.size() && elementNumber2 > 0 && elementNumber2 <= player.playerInventory.size() && elementNumber1 != elementNumber2)
 			{
 				//Llama a la función para buscar y recorrer el mapa
 				std::string newElement = gameElements.checkMap(player.playerInventory[elementNumber1 - 1], player.playerInventory[elementNumber2 - 1]);
@@ -102,10 +102,10 @@ int main() {
 					player.updateInventory(newElement, elementNumber1, elementNumber2);
 				}
 				//Alerta de error si la combinación no existe:
-				else std::cout << "Error: Can't combine those elements.";
+				else std::cout << "Can't combine those elements." << std::endl;
 			}
 			//Alerta de error si las keys no están dentro del inventario:
-			else std::cout << "Error: Can't combine those elements.";
+			else std::cout << "Can't combine those elements." << std::endl;
 		}
 	} while (Option != 99);
 
