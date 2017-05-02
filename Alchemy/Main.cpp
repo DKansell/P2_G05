@@ -10,6 +10,13 @@
 #include <cstdlib>
 
 
+struct std::hash<std::pair<std::string, std::string>>
+{
+	size_t operator()(const std::pair<std::string, std::string> &c)  const
+	{
+		return ((std::hash<std::string>()(c.first) ^ (std::hash<std::string>()(c.second) << 1)) >> 1);
+	}
+};
 
 void main() {
 
@@ -83,18 +90,21 @@ void main() {
 			break;
 		case 7: player.searchInfo(elementNumber2);
 			break;
-		case 8: /*std::cout << "element num 1: " << elementNumber1 << " ele 2: " << elementNumber2 << std::endl;*/ //Para comprovar los valores
+		case 8: 
 			//gameElements.search(elementNumber1, elementNumber2);
 				//Buscar si existe la combinación
 				//Añadir el nuevo elemento al Inventario y eliminar los anteriores  
-			std::unordered_map <std::string, std::pair<std::string, std::string>>::const_iterator got = gameElements.myElements.find(player.playerInventory[elementNumber1], player.playerInventory[elementNumber2]);
-			/*if (got == gameElements.myElements.end())
+			std::pair<std::string, std::string> key;
+			key = std::make_pair(player.playerInventory[elementNumber1], player.playerInventory[elementNumber2]);
+			auto got = gameElements.myElements.find(key);
+			
+			if (got == gameElements.myElements.end())
 				std::cout << "not found";
 			else
-				std::cout << got->first << " is " << got->second;*/
+				std::cout << got->second;
+				//Añadir el elemento al inventario y comprobar si esta descubierto para la puntuacion
 			break;
 		}
-
 	} while (Option != 99);
 
 	std::cin.clear(); //clears all error state flags

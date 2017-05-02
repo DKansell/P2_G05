@@ -19,6 +19,6 @@ public:
 
 	//Atributos
 	//mapa de las combinaciones
-	std::unordered_map <std::string, std::pair<std::string, std::string>> myElements; 
+	std::unordered_map <std::pair<std::string, std::string>, std::string> myElements;
 };
 
