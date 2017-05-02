@@ -21,7 +21,7 @@ public:
 
 	//Atributos
 	int playerScore; //Puntuación
-private:
+public:
 	std::vector <std::string> playerInventory; //Inventario del jugador
 };
 
