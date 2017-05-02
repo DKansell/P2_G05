@@ -1,6 +1,8 @@
 #include "GameElements.h"
 #include "Player.h"
 
+#include <functional>
+#include <utility>
 #include <string.h>
 #include <string>
 #include <unordered_map>
@@ -9,13 +11,7 @@
 #include <conio.h>
 #include <cstdlib>
 
-template<>
-struct std::hash<std::pair<std::string, std::string>> {
-	size_t operator()(const std::pair<std::string, std::string>& p) const
-	{
-		return ((hash<std::string>()(p.first) ^ (hash<std::string>()(p.second) << 1)) >> 1);
-	}
-};
+
 
 void main() {
 
@@ -40,6 +36,10 @@ void main() {
 		std::cout << "\nYour current score: " << player.playerScore << std::endl;
 		std::cout << "\nYou have these elements: " << std::endl;
 		player.showInventory();
+
+		std::cin.clear(); //clears all error state flags
+						  //extracts characters from the input buffer and discards them
+		std::cin.ignore(std::cin.rdbuf()->in_avail());
 
 		getline(std::cin, userInput); //Guardamos la instruccion del usuario dentro de una string
 
@@ -92,89 +92,21 @@ void main() {
 				//Buscar si existe la combinación
 				//Añadir el nuevo elemento al Inventario y eliminar los anteriores  
 			std::pair<std::string, std::string> key;
-			key = std::make_pair(player.playerInventory[elementNumber1], player.playerInventory[elementNumber2]);
+			key = std::make_pair(player.playerInventory[elementNumber1-1], player.playerInventory[elementNumber2-1]);
 			auto got = gameElements.myElements.find(key);
 			
-			if (got == gameElements.myElements.end())
-				std::cout << "not found";
+			if (got == gameElements.myElements.end()) {
+				key = std::make_pair(player.playerInventory[elementNumber2 - 1], player.playerInventory[elementNumber1 - 1]);
+				auto got = gameElements.myElements.find(key);
+
+				if (got == gameElements.myElements.end()) std::cout << "Element Not Found" << std::endl;
+				else std::cout << got->second;
+			}
 			else
 				std::cout << got->second;
 				//Añadir el elemento al inventario y comprobar si esta descubierto para la puntuacion
 			break;
 		}
 	} while (Option != 99);
-
-	std::cin.clear(); //clears all error state flags
-					  //extracts characters from the input buffer and discards them
-	std::cin.ignore(std::cin.rdbuf()->in_avail());
 }
 	
-	/*//Creación objetos del juego
-	GameElements gameElements;
-	Player player;
-
-	//Print cabezera del juego
-	gameElements.help(); //Muestra la lista de comandos 
-
-	//Variables importantes
-	std::string userInput;
-	std::string leftInstruction;
-	std::size_t aux;
-	std::string rightInstruction;
-
-	bool playing = true;
-
-	//GAME LOOP
-	do {
-
-		std::cout << "\nYour current score: " << player.playerScore << std::endl;
-		std::cout << "\nYou have these elements: " << std::endl;
-		player.showInventory();
-		getline(std::cin, userInput); //Guardamos la instruccion del usuario dentro de una string
-		aux = userInput.find(" ");
-
-		if (aux != std::string::npos) {
-			leftInstruction = userInput.substr(0, aux); //instruccion de la izquierda
-			rightInstruction = userInput.substr(aux + 1); //instruccion de la derecha
-		}
-
-		else leftInstruction = userInput;
-
-		system("cls"); //Borramos la pantalla despues del input
-
-		if (leftInstruction == "add" && rightInstruction == "basics") player.addBasics();
-		else if (leftInstruction == "add" && rightInstruction != "basics")
-		{
-			int elementNumber = atoi(rightInstruction.c_str()); 
-			player.add(elementNumber);
-		}
-		else if (leftInstruction == "help") gameElements.help();
-		else if (leftInstruction == "delete") 
-		{
-			int elementNumber = atoi(rightInstruction.c_str());
-			player.deleteElement(elementNumber);
-		}
-		else if (leftInstruction == "info") 
-		{
-			int elementNumber = atoi(rightInstruction.c_str());
-			player.searchInfo(elementNumber);
-		}
-		else if (leftInstruction == "sort") player.sortInventory();
-		else if (leftInstruction == "clean") player.cleanInventory();
-
-		else 
-		{
-			int key1 = atoi(leftInstruction.c_str());
-			int key2 = atoi(rightInstruction.c_str());
-
-			std::string newElement = gameElements.myElements
-
-		}
-
-
-		/*std::cin.clear(); //clears all error state flags
-		//extracts characters from the input buffer and discards them
-		std::cin.ignore(std::cin.rdbuf()->in_avail());
-
-	}while (playing);
-}*/

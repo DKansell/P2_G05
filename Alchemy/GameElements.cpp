@@ -12,7 +12,6 @@ GameElements::GameElements()
 	std::size_t aux1;
 	std::size_t aux2;
 	std::string elementValue, key1, key2;
-
 	//Si no se carga correctamente interrumpimos el programa
 	if (elementList.fail())
 	{
@@ -23,10 +22,8 @@ GameElements::GameElements()
 		while (!elementList.eof())
 	{
 			std::getline(elementList, line);
-
 			aux1 = line.find(" =");
 			aux2 = line.find(" +");
-
 			elementValue = line.substr(0, aux1);
 			key1 = line.substr(aux1 + 3, aux2 - (aux1 + 3));
 			key2 = line.substr(aux2 + 3);

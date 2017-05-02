@@ -90,3 +90,23 @@ void Player::cleanInventory() //Elimina elementos repetidos del inventario
 	//Ordenamos el vector final sin duplicados
 	Player::sortInventory();
 }
+
+void Player::updateScore(std::string element) {
+
+	bool isDiscovered = false;
+
+	for (std::vector<std::string>::iterator it = discoveredElements.begin(); it != discoveredElements.end(); ++it)
+	{
+			if (*it == element) 
+			{
+				isDiscovered = true;
+				break;
+			}
+	}
+		
+	if (!isDiscovered) 
+	{
+		playerScore++;
+		discoveredElements.push_back(element);
+	}
+}
