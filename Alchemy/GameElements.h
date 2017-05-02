@@ -5,6 +5,7 @@
 #include <vector>
 #include "Player.h"
 
+//Funcion Hash para usar pair de strings como key del unordered_map.
 template<>
 struct std::hash<std::pair<std::string, std::string>> {
 	size_t operator()(const std::pair<std::string, std::string> &p) const
@@ -22,11 +23,10 @@ public:
 	~GameElements();
 
 	//Métodos
-	void help();
-	std::string checkMap(std::string key1, std::string key2);
+	void help(); //Muestra el tutorial al jugador
+	std::string checkMap(std::string key1, std::string key2); //Busca si una combinación de elementos existe
 
 	//Atributos
-	//mapa de las combinaciones
-	std::unordered_map <std::pair<std::string, std::string>, std::string> myElements;
+	std::unordered_map <std::pair<std::string, std::string>, std::string> myElements; //mapa de las combinaciones
 };
 

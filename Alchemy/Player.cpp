@@ -8,7 +8,7 @@
 
 
 Player::Player() : 
-	//Inicializamos score a 0 i inventario del jugador con los 4 elementos básicos
+	//Inicializamos score a 0 y inventario del jugador con los 4 elementos básicos
 	playerScore(0),
 	playerInventory({"Air", "Earth", "Water", "Fire"})
 {
@@ -84,7 +84,7 @@ void Player::cleanInventory() //Elimina elementos repetidos del inventario
 				break;
 			}
 		}
-		if (duplicate == false) aux.push_back(*it); //Copia un elemento en caso de no estar repetido
+		if (duplicate == false) aux.push_back(*it); //Guardamos el elemento en caso de no estar repetido
 	}
 	//Copiamos el vector auxiliar sin duplicados al vector inventario
 	playerInventory = aux;
@@ -93,29 +93,30 @@ void Player::cleanInventory() //Elimina elementos repetidos del inventario
 	Player::sortInventory();
 }
 
-void Player::updateScore(std::string element) {
+void Player::updateScore(std::string element) { //Actualiza la puntuación del jugador
 
 	bool isDiscovered = false;
 
+	//Comprobamos si el jugador ya ha descubierto anteriormente el elemento usando el vector discoveredElements
 	for (std::vector<std::string>::iterator it = discoveredElements.begin(); it != discoveredElements.end(); ++it)
 	{
-			if (*it == element) 
+			if (*it == element) //Si encuentra que ya se ha descubierto, salimos del bucle y continuamos
 			{
 				isDiscovered = true;
 				break;
 			}
 	}
 		
-	if (!isDiscovered) 
+	if (!isDiscovered) //Si encuentra que aún no se ha descubierto, incrementa puntuación y añade el nuevo elemento al vector
 	{
 		playerScore++;
 		discoveredElements.push_back(element);
 	}
 }
 
-void Player::updateInventory(std::string element, int pos1, int pos2)
+void Player::updateInventory(std::string element, int pos1, int pos2) //Actualiza el inventario del jugador
 {
-	playerInventory.erase((playerInventory.begin() + pos1) - 1);
-	playerInventory.erase((playerInventory.begin() + pos2) - 1);
-	playerInventory.push_back(element);
+	playerInventory.erase((playerInventory.begin() + pos1) - 1); //Eliminamos componente 1
+	playerInventory.erase((playerInventory.begin() + pos2) - 1); //Eliminamos componente 2
+	playerInventory.push_back(element); //Añadimos nuevo elemento al inventario
 }
