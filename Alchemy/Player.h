@@ -19,6 +19,7 @@ public:
 	void sortInventory();
 	void cleanInventory();
 	void updateScore(std::string element);
+	void updateInventory(std::string element, int pos1, int pos2);
 
 	//Atributos
 	int playerScore; //Puntuación

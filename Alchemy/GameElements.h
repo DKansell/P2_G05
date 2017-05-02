@@ -23,6 +23,7 @@ public:
 
 	//Métodos
 	void help();
+	std::string checkMap(std::string key1, std::string key2);
 
 	//Atributos
 	//mapa de las combinaciones

@@ -63,7 +63,7 @@ void main() {
 				if (leftInstruction == "add") Option = 5;
 				if (leftInstruction == "delete") Option = 6;
 				if (leftInstruction == "info") Option = 7;
-				if (elementNumber1/*= atoi(leftInstruction.c_str())*/ > 0) Option = 8; //Només guarda elementNumber la 1a vegada.
+				if (elementNumber1 > 0) Option = 8; //Només guarda elementNumber la 1a vegada.
 				elementNumber2 = atoi(rightInstruction.c_str());
 				if (elementNumber2 == 0) Option = 0;
 			}
@@ -88,11 +88,22 @@ void main() {
 		case 7: player.searchInfo(elementNumber2);
 			break;
 		case 8: 
-			//gameElements.search(elementNumber1, elementNumber2);
-				//Buscar si existe la combinación
-				//Añadir el nuevo elemento al Inventario y eliminar los anteriores  
-			std::pair<std::string, std::string> key;
+			if (elementNumber1 > 0 && elementNumber1 <= player.playerInventory.size() && elementNumber2 > 0 && elementNumber2 <= player.playerInventory.size())
+			{
+				std::string newElement = gameElements.checkMap(player.playerInventory[elementNumber1 - 1], player.playerInventory[elementNumber2 - 1]);
+				if (newElement != "NotFound")
+				{
+					std::cout << "Congratulations! You discovered: " << newElement << std::endl;
+					player.updateScore(newElement);
+					player.updateInventory(newElement, elementNumber1, elementNumber2);
+				}
+				else std::cout << "Error: Can't combine those elements.";
+			}
+			else std::cout << "Error: Can't combine those elements.";
+				
+				/*std::pair<std::string, std::string> key;
 			key = std::make_pair(player.playerInventory[elementNumber1-1], player.playerInventory[elementNumber2-1]);
+			
 			auto got = gameElements.myElements.find(key);
 			
 			if (got == gameElements.myElements.end()) {
@@ -105,7 +116,7 @@ void main() {
 			else
 				std::cout << got->second;
 				//Añadir el elemento al inventario y comprobar si esta descubierto para la puntuacion
-			break;
+			break;*/
 		}
 	} while (Option != 99);
 }

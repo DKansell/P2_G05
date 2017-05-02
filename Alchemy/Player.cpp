@@ -110,3 +110,10 @@ void Player::updateScore(std::string element) {
 		discoveredElements.push_back(element);
 	}
 }
+
+void Player::updateInventory(std::string element, int pos1, int pos2)
+{
+	playerInventory.erase((playerInventory.begin() + pos1) - 1);
+	playerInventory.erase((playerInventory.begin() + pos2) - 1);
+	playerInventory.push_back(element);
+}

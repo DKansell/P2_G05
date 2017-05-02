@@ -52,3 +52,20 @@ void GameElements::help()
 	std::cout << "- Enter the word 'clean' to delete all the repeated elements." << std::endl;
 	std::cout << "- Enter the word 'help' to show this tutorial." << std::endl;
 }
+
+std::string GameElements::checkMap(std::string key1, std::string key2) 
+{
+	std::pair<std::string, std::string> key;
+	key = std::make_pair(key1, key2);
+	auto got = myElements.find(key);
+
+	if (got == myElements.end()) {
+		key = std::make_pair(key2, key1);
+		auto got = myElements.find(key);
+
+		if (got == myElements.end()) return "NotFound";
+		else return got->second;
+	}
+	else
+		return got->second;
+}
